@@ -1,24 +1,70 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column    | Type   | Options     |
+| ----------| ------ | ----------- |
+| nickname  | string | null: false |
+| email     | string | null: false |
+| password  | string | null: false |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :items
+- has_many :comments
+- has_many :orders
 
-* Configuration
+## comments テーブル
 
-* Database creation
+| Column | Type   | Options     |
+| -------| ------ | ----------- |
+| text   | string | null: false |
+| user   | string | null: false |
+| item   | string | null: false |
 
-* Database initialization
+### Association
 
-* How to run the test suite
+- belongs_to :user
+- belongs_to :item
 
-* Services (job queues, cache servers, search engines, etc.)
+## items テーブル
 
-* Deployment instructions
+| Column   | Type   | Options     |
+| ---------| -------| ------------|
+| item     | string | null: false |
+| category | string | null: false |
+| price    | string | null: false |
+| image    | string | null: false |
+| user     | string | null: false |
 
-* ...
+### Association
+
+- belongs_to :user
+- has_many :comments
+- has_one :orders
+
+## orders テーブル
+
+| Column           | Type   | Options     |
+| -----------------| -------| ------------|
+| item             | string | null: false |
+| user             | string | null: false |
+| shopping_address | string | null: false |
+
+
+### Association
+
+- belongs_to :item
+- belongs_to :user
+
+
+## shopping_addresses テーブル
+
+| Column           | Type   | Options     |
+| -----------------| -------| ------------|
+| shopping_address | string | null: false |
+
+
+### Association
+
+- has_many :orders
