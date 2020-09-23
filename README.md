@@ -2,11 +2,16 @@
 
 ## users テーブル
 
-| Column    | Type   | Options     |
-| ----------| ------ | ----------- |
-| nickname  | string | null: false |
-| email     | string | null: false |
-| password  | string | null: false |
+| Column          | Type   | Options     |
+| ----------------| ------ | ----------- |
+| nickname        | string | null: false |
+| last_name       | string | null: false |
+| first_name      | string | null: false |
+| last_name_kana  | string | null: false |
+| first_name_kana | string | null: false |
+| birthday        | string | null: false |
+| email           | string | null: false |
+| password        | string | null: false |
 
 ### Association
 
@@ -16,11 +21,11 @@
 
 ## comments テーブル
 
-| Column | Type   | Options     |
-| -------| ------ | ----------- |
-| text   | string | null: false |
-| user   | string | null: false |
-| item   | string | null: false |
+| Column | Type       | Options                        |
+| -------| ---------- | ------------------------------ |
+| text   | string     | null: false                    |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -29,27 +34,26 @@
 
 ## items テーブル
 
-| Column   | Type   | Options     |
-| ---------| -------| ------------|
-| item     | string | null: false |
-| category | string | null: false |
-| price    | string | null: false |
-| image    | string | null: false |
-| user     | string | null: false |
+| Column    | Type       | Options                        |
+| ----------| -----------| -------------------------------|
+| name      | string     | null: false                    |
+| category  | string     | null: false                    |
+| price     | string     | null: false                    |
+| item_text | string     | null: false                    |
+| user      | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - has_many :comments
-- has_one :orders
+- has_one :order
 
 ## orders テーブル
 
-| Column           | Type   | Options     |
-| -----------------| -------| ------------|
-| item             | string | null: false |
-| user             | string | null: false |
-| shopping_address | string | null: false |
+| Column           | Type       | Options                        |
+| -----------------| -----------| -------------------------------|
+| item             | references | null: false, foreign_key: true |
+| user             | references | null: false, foreign_key: true |
 
 
 ### Association
@@ -60,10 +64,14 @@
 
 ## shopping_addresses テーブル
 
-| Column           | Type   | Options     |
-| -----------------| -------| ------------|
-| shopping_address | string | null: false |
-
+| Column       | Type    | Options     |
+| -------------| --------| ------------|
+| postal_code  | string  | null: false |
+| prefectures  | string  | null: false |
+| city         | string  | null: false |
+| addresses    | string  | null: false |
+| building     | string  | null: false |
+| phone_number | string  | null: false |
 
 ### Association
 
