@@ -37,13 +37,13 @@
 | Column             | Type       | Options                        |
 | -------------------| -----------| -------------------------------|
 | name               | string     | null: false                    |
-| category           | string     | null: false                    |
+| category           | integer    | null: false                    |
 | price              | integer    | null: false                    |
-| item_text          | string     | null: false                    |
-| delivery_free      | string     | null: false                    |
-| product_condition  | string     | null: false                    |
-| delivery_source    | string     | null: false                    |
-| estimated_delivery | string     | null: false                    |
+| item_text          | text       | null: false                    |
+| delivery_free      | integer    | null: false                    |
+| product_condition  | integer    | null: false                    |
+| delivery_source    | integer    | null: false                    |
+| estimated_delivery | integer    | null: false                    |
 | user               | references | null: false, foreign_key: true |
 
 ### Association
@@ -51,29 +51,6 @@
 - belongs_to :user
 - has_many :comments
 - has_one :order
-- has_many :item_item_categories
-- has_many :item_categories.through:item_item_categories
-
-## item_item_categories テーブル
-
-| Column        | Type       | Options                        |
-| --------------| -----------| -------------------------------|
-| item_category | references | null: false, foreign_key: true |
-| item          | references | null: false, foreign_key: true |
-
-### Association
-
-- belongs_to :item
-- belongs_to :item_category
-
-## item_categories テーブル
-
-| Column    | Type       | Options      |
-| ----------| -----------| -------------|
-| category  | string     |  null: false |
-
-- has_many :item_item_categories
-- has_many :items.through:item_item_categories
 
 ## orders テーブル
 
@@ -82,19 +59,17 @@
 | item        | references | null: false, foreign_key: true |
 | user        | references | null: false, foreign_key: true |
 
-
 ### Association
 
 - belongs_to :item
 - belongs_to :user
 - has_one :shopping_address
 
-
 ## shopping_addresses テーブル
 
 | Column       | Type       | Options                         |
 | -------------| -----------| --------------------------------|
-| postal_code  | integer    | null: false                     |
+| postal_code  | string     | null: false                     |
 | prefectures  | integer    | null: false                     |
 | city         | string     | null: false                     |
 | addresses    | string     | null: false                     |
