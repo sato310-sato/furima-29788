@@ -9,7 +9,7 @@ RSpec.describe User, type: :model do
     it "nicknameが空では登録できないこと" do
       @user.nickname = ""
       @user.valid?
-      expect(@room.errors.full_messages).to include("Nicname can't be blank")
+      expect(@room.errors.full_messages).to include("Nikcname can't be blank")
 
     end
 
