@@ -7,14 +7,14 @@ RSpec.describe User, type: :model do
      end
 
     it "nicknameが空では登録できないこと" do
-      @user.nickname = nil
+      @user.nickname = ""
       @user.valid?
       expect(@room.errors.full_messages).to include("Nicname can't be blank")
 
     end
 
     it "emailが空では登録できないこと" do
-      @user.email = nil
+      @user.email = ""
       @user.valid?
       expect(@user.errors.full_messages).to include("Email can't be blank")
     end
@@ -27,7 +27,7 @@ RSpec.describe User, type: :model do
     end
 
     it "passwordが空では登録できないこと" do
-      @user.password = nil
+      @user.password = ""
       @user.valid?
       expect(@user.errors.full_messages).to include("Password can't be blank")
     end
@@ -58,31 +58,31 @@ RSpec.describe User, type: :model do
 
 
     it "last_nameが空では登録できないこと" do
-      @user.last_name = nil
+      @user.last_name = ""
       @user.valid?
       expect(@user.errors.full_messages).to include("Last_name can't be blank")
     end
 
     it "first_nameが空では登録できないこと" do
-      @user.first = nil
+      @user.first = ""
       @user.valid?
       expect(@user.errors.full_messages).to include("First_name can't be blank")
     end
 
     it "last_name_kanaが空では登録できないこと" do
-      @user.last_name_kana = nil
+      @user.last_name_kana = ""
       @user.valid?
       expect(@user.errors.full_messages).to include("Last_name_kana can't be blank")
     end
 
     it "first_name_kanaが空では登録できないこと" do
-      @user.first_name_kana = nil
+      @user.first_name_kana = ""
       @user.valid?
       expect(@user.errors.full_messages).to include("First_name_kana can't be blank")
     end
 
     it "birthdayが空では登録できないこと" do
-      @user.birthday = nil
+      @user.birthday = ""
       @user.valid?
       expect(@user.errors.full_messages).to include("Birthday can't be blank")
     end
