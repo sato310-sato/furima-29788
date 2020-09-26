@@ -7,16 +7,19 @@ class User < ApplicationRecord
   has_many :comments
   has_many :orders
  
+  with_options presence: true do
+
     # ニックネームが必須
-    validates :nickname, presence: true
-    # 苗字・名前が必須
-    validates :first_name, presence: true
-    validates :last_name, presence: true
-    #パスワードは二回入力する 
-    validates :password,confirmation: true
-    validates :password_confirmation, presence: true
+    validates :nickname
+    # 苗字・名前が必須全角ひらがな、全角カタカナ、漢字
+    validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "は全角で入力してください。"}
+    validates :last_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "は全角で入力してください。"}
+    # 誕生日が必須
+    validates :birty_day
+  end
+    
  
-  
+
     with_options presence: true, format: { with: /\A(?=.*?[a-z\d?=@])(?=.*?[\d])[a-z\d]+\z/i, message: 'メールアドレスを入力して下さい' } do
     # emeailが必須、大文字小文字を区別しない一意、＠含む、
     validates :email , uniqueness: true
