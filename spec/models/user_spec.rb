@@ -6,8 +6,7 @@ RSpec.describe User, type: :model do
       @user = FactoryBot.build(:user)
     end
  
-
-   describe 'ユーザー新規登録' do
+  describe 'ユーザー新規登録' do
     context '新規登録がうまくいくとき' do
         it "nickname、苗字、名前、フリガナ、email、パスワードがある場合登録できる" do
           expect(@user).to be_valid
@@ -30,10 +29,9 @@ RSpec.describe User, type: :model do
 
         it "emailが重複している場合登録できない事" do
           @user.save
-          @another_user = FactoryBot.build(:user)
-          @another_user.email = @user.email
-          @another_user.valid?
-          expect(@another_user.errors.full_messages).to include("Email has already been taken")
+          another_user = FactoryBot.build(:user, email: @user.email)
+          another_user.valid?
+          expect(another_user.errors.full_messages).to include("Email has already been taken")
         end
     
         it "passwordが空では登録できないこと" do
@@ -59,6 +57,13 @@ RSpec.describe User, type: :model do
           @user.last_name = nil
           @user.valid?
           expect(@user.errors.full_messages).to include("Last name can't be blank")
+        end
+
+        it 'last_name_kanaがカタカナでなければ登録できない' do
+          # FactoryBotを用いて、user情報（name、email、password、password_confirmation）の中でも「last_name_kana」だけを選択してインスタンスを生成
+          user.last_name_kana = FactoryBot.build(:user,last_name_kana: @user.last_name_kana)
+          @user.valid?
+          expect(@user.errors.full_messages).to include("はカタカナで入力してください")
         end
 
         it "first_nameが空では登録できないこと" do

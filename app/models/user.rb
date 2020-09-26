@@ -12,23 +12,27 @@ class User < ApplicationRecord
   
   validates :password, length: { minimum: 6 }
 
-  @email_regex = (/\A([^@\s]+)@((?:[-a-z0-9]+.)+[a-z]{2,})\z/i)
+  @email_regex = (/\A\S+@\S+\.\S+\z/)
   validates :email , uniqueness: true
   validates :email , format: { with: @email_regular_expressions, message: 'メールアドレスを入力して下さい'} ,allow_nil: true
 
-  with_options presence: true do
+  # with_options presence: true do
+    # validates :first_name
+    # validates :last_name
+    # validates :first_name_kana
+    # validates :last_name_kana
+  # end
+
+  @zenkaku_regex = (/\A[ぁ-んァ-ン一-龥]/)
+  with_options presence: true ,format: { with: @zenkaku_regex , message: '全角文字を使用してください' } do
     validates :first_name
     validates :last_name
-    validates :first_name_kana
-    validates :last_name_kana
   end
 
-  @zenkaku_regex = (/\A[ぁ-んァ-ン一-龥]+\z/)
-  with_options presence: true do
-    validates :first_name, format: { with: @zenkaku_regex , message: '全角文字を使用してください' },  allow_nil: true
-    validates :last_name, format: { with: @zenkaku_regex , message: '全角文字を使用してください' },  allow_nil: true
-    validates :first_name_kana, format: { with: @zenkaku_regex , message: '全角文字を使用してください' },  allow_nil: true
-    validates :last_name_kana, format: { with: @zenkaku_regex , message: '全角文字を使用してください' },  allow_nil: true
+  @kana_regex = (/\A[ァ-ヶー－]+\z/)
+  with_options presence: true ,format: { with: @kana_regex , message: '全角カタカナを使用してください' } do
+    validates :first_name_kana
+    validates :last_name_kana 
   end
   
   @PASSWORD_REGEX = (/\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i).freeze
