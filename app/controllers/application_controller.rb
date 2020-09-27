@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :basic_auth
+  # ログイン画面に遷移
+  before_action :authenticate_user!
 
   private
 
