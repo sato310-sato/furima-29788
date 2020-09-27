@@ -2,12 +2,8 @@ class ApplicationController < ActionController::Base
   before_action :basic_auth
   # ログイン画面に遷移
   before_action :authenticate_user!
- 
-
 
   private
-
-  
 
   def basic_auth
     authenticate_or_request_with_http_basic do |username, password|
