@@ -1,0 +1,2 @@
+class DeliveryFree < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class EstimatedDelivery < ApplicationRecord
+end
