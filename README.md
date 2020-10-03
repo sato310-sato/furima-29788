@@ -34,23 +34,24 @@
 
 ## items テーブル
 
-| Column             | Type       | Options                        |
-| -------------------| -----------| -------------------------------|
-| name               | string     | null: false                    |
-| category           | integer    | null: false                    |
-| price              | integer    | null: false                    |
-| item_text          | text       | null: false                    |
-| delivery_free      | integer    | null: false                    |
-| product_condition  | integer    | null: false                    |
-| delivery_source    | integer    | null: false                    |
-| estimated_delivery | integer    | null: false                    |
-| user               | references | null: false, foreign_key: true |
+| Column                | Type       | Options                        |
+| ----------------------| -----------| -------------------------------|
+| name                  | string     | null: false                    |
+| category_id           | integer    | null: false                    |
+| price                 | integer    | null: false                    |
+| item_text             | text       | null: false                    |
+| delivery_free_id      | integer    | null: false                    |
+| product_condition_id  | integer    | null: false                    |
+| delivery_source_id    | integer    | null: false                    |
+| estimated_delivery_id | integer    | null: false                    |
+| user                  | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - has_many :comments
 - has_one :order
+- has_one_attached :image
 
 ## orders テーブル
 
