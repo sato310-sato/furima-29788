@@ -127,14 +127,14 @@
     <ul class='item-lists'>
 
      
-     <% if @items.present? %>
-      <% @items.each do |item| %>
+     <% if @item.present? %>
+      <% @item.each do |item| %>
       
         <li class='list'>
         
           <%= link_to "#" do %>
           <div class='item-img-content'>
-            <%= image_tag "item-sample.png", class: "item-img" %>
+            <%= image_tag item.image, class: "item-img" %>
             
             <div class='sold-out'>
               <span>Sold Out!!</span>
@@ -156,8 +156,8 @@
           </div>
         </li>
       <% end %>
-     <% end %>
-
+      <% end %>
+      
       <%# 商品がない場合のダミー %>
       <li class='list'>
         <%= link_to '#' do %>
@@ -176,8 +176,7 @@
         </div>
         <% end %>
       </li>
-      <% end %>
-    
+      <% end %> 
 
       <%# /商品がない場合のダミー %>
     </ul>
@@ -186,7 +185,7 @@
 </div>
 <div class='purchase-btn'>
   <span class='purchase-btn-text'>出品する</span>
-  <a href="#">
+  <a href="/items/new">
     <%= image_tag 'camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
   </a>
 </div>
