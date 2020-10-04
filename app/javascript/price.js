@@ -12,5 +12,5 @@ function price (){
     e.preventDefault();
   });
 }
-// setInterval(price, 1000);
+ setInterval(price, 1000);
 window.addEventListener('load', price);
