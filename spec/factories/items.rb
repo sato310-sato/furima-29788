@@ -8,7 +8,7 @@ FactoryBot.define do
     product_condition_id { 7 }
     delivery_source_id { 3 }
     estimated_delivery_id { 4 }
-    image { Faker::Lorem.sentence}
+    image { Faker::Lorem.sentence }
     association :user
 
     after(:build) do |item|
