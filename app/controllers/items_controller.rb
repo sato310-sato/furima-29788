@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :item_tweet, only: [:edit, :show, :update]
+  before_action :item_tweet, only: [:edit, :show, :update, :destroy]
   # before_action :move_to_index, except: [:index, :show]
 
   def index
@@ -33,11 +33,10 @@ class ItemsController < ApplicationController
     end
   end
 
-  # def destroy
-  #   @item = Item.find(params[:id])
-  #   @item.destroy
-  #   redirect_to root_path
-  # end
+  def destroy
+    @item.destroy
+    redirect_to root_path
+  end
 
   # def move_to_index
   # redirect_to action: :index unless user_signed_in?
