@@ -11,7 +11,6 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    # binding.pry
     if @item.save
       redirect_to root_path
     else
@@ -23,9 +22,20 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  # def edit
-  #   @item = Item.find(params[:id])
-  # end
+  def edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    # binding.pry
+    if @item.update(item_params)
+      # binding.pry
+       redirect_to root_path
+    else
+      render :edit
+    end
+  end
 
   # def destroy
   #   @item = Item.find(params[:id])
