@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :item_tweet, only: [:edit, :show, :update]
   # before_action :move_to_index, except: [:index, :show]
 
   def index
@@ -11,7 +12,6 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    # binding.pry
     if @item.save
       redirect_to root_path
     else
@@ -20,12 +20,18 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
   end
 
-  # def edit
-  #   @item = Item.find(params[:id])
-  # end
+  def edit
+  end
+
+  def update
+    if @item.update(item_params)
+      redirect_to root_path
+    else
+      render :edit
+    end
+  end
 
   # def destroy
   #   @item = Item.find(params[:id])
@@ -43,5 +49,7 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :price, :item_text, :category_id, :delivery_source_id, :delivery_free_id, :product_condition_id, :estimated_delivery_id, :image).merge(user_id: current_user.id)
   end
 
-
+  def item_tweet
+    @item = Item.find(params[:id])
+  end
 end
