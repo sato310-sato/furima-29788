@@ -22,8 +22,6 @@ class Item < ApplicationRecord
     validates :image
   end
 
-  # validates :price, numericality: { greater_than: 299, less_than: 10000000 }
-  # 指定された値より等しいか大きい、小さい
   validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 10_000_000 }
   @price_regex = /\A[0-9]+\z/
   validates_format_of :price, with: @price_regex, allow_nil: true
