@@ -12,7 +12,8 @@ class User < ApplicationRecord
 
   @password_regex = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]{6,100}+\z/i
   validates :password, presence: true
-  validates_format_of :password, with: @password_regex, allow_nil: true
+  validates_format_of :password, with: @password_regex
+  validates_length_of :password, minimum: 6
 
   @email_regex = /\A\S+@\S+\.\S+\z/
   validates :email, uniqueness: true
