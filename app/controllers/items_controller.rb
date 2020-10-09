@@ -50,5 +50,4 @@ class ItemsController < ApplicationController
   def item_tweet
     @item = Item.find(params[:id])
   end
-  
 end

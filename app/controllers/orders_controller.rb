@@ -1,6 +1,8 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :item_tweet, only: [:index, :create]
+  before_action :login_user
+  before_action :sold_out
 
   def index
   end
@@ -17,7 +19,7 @@ class OrdersController < ApplicationController
   end
 
   private
-  
+
   def item_tweet
     @item = Item.find(params[:item_id])
   end
@@ -33,5 +35,13 @@ class OrdersController < ApplicationController
       card: price_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def login_user
+    redirect_to root_path if user_signed_in? && current_user.id == @item.user_id
+  end
+
+  def sold_out
+    redirect_to root_path if !@item.nil? || !item.order.nil?
   end
 end
