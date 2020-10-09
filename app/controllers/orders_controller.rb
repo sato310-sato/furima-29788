@@ -38,10 +38,12 @@ class OrdersController < ApplicationController
   end
 
   def login_user
-    redirect_to root_path if user_signed_in? && current_user.id == @item.user_id
-  end
+    redirect_to root_path if user_signed_in? && current_user.id == @item.user_id 
+  end  
 
   def sold_out
-    redirect_to root_path if !@item.nil? || !item.order.nil?
+    if @item.order != nil
+      redirect_to root_path
+    end
   end
 end
