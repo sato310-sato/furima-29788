@@ -2,13 +2,9 @@ require 'rails_helper'
 
 RSpec.describe UserPrice, type: :model do
   before do
-    # もう一人ユーザーを作る＝ユーザー登録を行った人
     user = FactoryBot.create(:user)
-    # itemに購入者をいれる
     item = FactoryBot.create(:item)
-    # 購入者とitemを紐付けたものをuser_priceに代入する
     @user_price = FactoryBot.build(:user_price, user_id: user.id, item_id: item.id)
-    # binding.pry
     sleep(1)
   end
 
