@@ -1,9 +1,9 @@
 class ItemsController < ApplicationController
+  before_action :move_to_index, except: [:index, :show]
   before_action :item_tweet, only: [:edit, :show, :update, :destroy]
-  # before_action :move_to_index, except: [:index, :show]
 
   def index
-    @item = Item.order(created_at: :desc)
+    @item = Item.includes(:user).order(created_at: :desc)
   end
 
   def new
@@ -41,10 +41,6 @@ class ItemsController < ApplicationController
     end
   end
 
-  # def move_to_index
-  # redirect_to action: :index unless user_signed_in?
-  # end
-
   private
 
   def item_params
@@ -54,4 +50,11 @@ class ItemsController < ApplicationController
   def item_tweet
     @item = Item.find(params[:id])
   end
+
+  def move_to_index
+    unless user_signed_in? && current_user.id == @item.user_id 
+    redirect_to action: :index 
+    end
+  end
+  
 end

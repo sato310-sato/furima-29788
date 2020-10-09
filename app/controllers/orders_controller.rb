@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+ 
   def index
     @item = Item.find(params[:item_id])
   end
@@ -6,7 +7,6 @@ class OrdersController < ApplicationController
   def create
     @item = Item.find(params[:item_id])
     @price = UserPrice.new(price_params)
-    # binding.pry
     if @price.valid?
       pay_item
       @price.save
@@ -19,7 +19,6 @@ class OrdersController < ApplicationController
   private
 
   def price_params
-    # binding.pry
     params.permit(:postal_code, :prefectural_id, :city, :house_number, :building, :phone_number, :item_id, :token).merge(user_id: current_user.id)
   end
 
