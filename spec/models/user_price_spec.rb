@@ -38,6 +38,19 @@ RSpec.describe UserPrice, type: :model do
         expect(@user_price.errors.full_messages).to include("Postal code can't be blank")
       end
 
+      it 'cityが空だと保存できないこと' do
+        @user_price.city = nil
+        @user_price.valid?
+        expect(@user_price.errors.full_messages).to include("City can't be blank")
+      end
+
+
+      it 'house_numberが空だと保存できないこと' do
+        @user_price.house_number = nil
+        @user_price.valid?
+        expect(@user_price.errors.full_messages).to include("House number can't be blank")
+      end
+
       it 'postal_codeが半角のハイフンを含んだ正しい形式でないと保存できないこと' do
         @user_price.postal_code = '1234567'
         @user_price.valid?
