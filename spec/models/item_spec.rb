@@ -48,28 +48,28 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Item text can't be blank")
       end
 
-      it 'delivery_free_idが空の場合保存できない' do
-        @item.delivery_free_id = nil
+      it 'delivery_free_idが1の場合保存できない' do
+        @item.delivery_free_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include('Delivery free is not a number')
+        expect(@item.errors.full_messages).to include('Delivery free must be other than 1')
       end
 
-      it 'product_condition_idが空の場合保存できない' do
-        @item.product_condition_id = nil
+      it 'product_condition_idが１の場合保存できない' do
+        @item.product_condition_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include('Product condition is not a number')
+        expect(@item.errors.full_messages).to include('Product condition must be other than 1')
       end
 
-      it 'delivery_source_idが空の場合保存できない' do
-        @item.delivery_source_id = nil
+      it 'delivery_source_idが１の場合保存できない' do
+        @item.delivery_source_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include('Delivery source is not a number')
+        expect(@item.errors.full_messages).to include('Delivery source must be other than 1')
       end
 
-      it 'estimated_delivery_idが空の場合保存できない' do
-        @item.estimated_delivery_id = nil
+      it 'estimated_delivery_idが１の場合保存できない' do
+        @item.estimated_delivery_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include('Estimated delivery is not a number')
+        expect(@item.errors.full_messages).to include('Estimated delivery must be other than 1')
       end
 
       it 'imageが空の場合保存できない' do

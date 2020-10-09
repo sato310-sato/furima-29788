@@ -44,7 +44,6 @@ RSpec.describe UserPrice, type: :model do
         expect(@user_price.errors.full_messages).to include("City can't be blank")
       end
 
-
       it 'house_numberが空だと保存できないこと' do
         @user_price.house_number = nil
         @user_price.valid?
@@ -57,11 +56,10 @@ RSpec.describe UserPrice, type: :model do
         expect(@user_price.errors.full_messages).to include('Postal code is invalid')
       end
 
-      it 'prefecturalを選択していないと保存できないこと' do
-        @user_price.prefectural_id = nil
-        binding.pry
+      it 'prefecturalが1だと保存できないこと' do
+        @user_price.prefectural_id = 1
         @user_price.valid?
-        expect(@user_price.errors.full_messages).to include('Prefectural is not a number')
+        expect(@user_price.errors.full_messages).to include('Prefectural must be other than 1')
       end
 
       it 'phone_numberが空では保存できないこと' do
