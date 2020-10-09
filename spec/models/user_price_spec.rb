@@ -59,6 +59,7 @@ RSpec.describe UserPrice, type: :model do
 
       it 'prefecturalを選択していないと保存できないこと' do
         @user_price.prefectural_id = nil
+        binding.pry
         @user_price.valid?
         expect(@user_price.errors.full_messages).to include('Prefectural is not a number')
       end
