@@ -5,6 +5,7 @@ class OrdersController < ApplicationController
   before_action :sold_out
 
   def index
+    @price = UserPrice.new
   end
 
   def create
