@@ -56,6 +56,12 @@ RSpec.describe UserPrice, type: :model do
         expect(@user_price.errors.full_messages).to include('Postal code is invalid')
       end
 
+      it 'postal_codeが空の場合保存できないこと' do
+        @user_price.postal_code = nil
+        @user_price.valid?
+        expect(@user_price.errors.full_messages).to include("Postal code can't be blank")
+      end
+
       it 'prefecturalが1だと保存できないこと' do
         @user_price.prefectural_id = 1
         @user_price.valid?
@@ -72,6 +78,12 @@ RSpec.describe UserPrice, type: :model do
         @user_price.phone_number = '123456789123'
         @user_price.valid?
         expect(@user_price.errors.full_messages).to include('Phone number is too long (maximum is 11 characters)')
+      end
+
+      it 'phone_numberに半角ハイフンが含まれていると保存できないこと' do
+        @user_price.phone_number = '090-0000-0000'
+        @user_price.valid?
+        expect(@user_price.errors.full_messages).to include('Phone number is invalid')
       end
     end
   end
