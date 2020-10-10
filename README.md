@@ -64,16 +64,16 @@
 
 - belongs_to :item
 - belongs_to :user
-- has_one :shopping_address
+- has_one :address
 
-## shopping_addresses テーブル
+## addresses テーブル
 
 | Column       | Type       | Options                         |
 | -------------| -----------| --------------------------------|
 | postal_code  | string     | null: false                     |
-| prefectures  | integer    | null: false                     |
+| prefectural  | integer    | null: false                     |
 | city         | string     | null: false                     |
-| addresses    | string     | null: false                     |
+| house_number | string     | null: false                     |
 | building     | string     |                                 |
 | phone_number | string     | null: false                     |
 | order        | references | null: false, foreign_key: true  |

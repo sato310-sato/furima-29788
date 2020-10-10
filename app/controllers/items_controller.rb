@@ -1,9 +1,9 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :item_tweet, only: [:edit, :show, :update, :destroy]
-  # before_action :move_to_index, except: [:index, :show]
 
   def index
-    @item = Item.order(created_at: :desc)
+    @item = Item.includes(:user).order(created_at: :desc)
   end
 
   def new
@@ -40,10 +40,6 @@ class ItemsController < ApplicationController
       render :show
     end
   end
-
-  # def move_to_index
-  # redirect_to action: :index unless user_signed_in?
-  # end
 
   private
 

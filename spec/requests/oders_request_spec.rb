@@ -1,4 +1,4 @@
 require 'rails_helper'
 
-RSpec.describe 'Oders', type: :request do
+RSpec.describe 'Orders', type: :request do
 end
